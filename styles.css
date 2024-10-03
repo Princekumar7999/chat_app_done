@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #E3F2FD;
+    background-color: #001F3F;
 }
 
 .app-container {
@@ -11,8 +11,8 @@ body, html {
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #FFFFFF;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background-color: #003366;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
     overflow: hidden;
 }
@@ -21,38 +21,39 @@ body, html {
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #2196F3;
+    border-right: 2px solid #00A86B;
 }
 
 #active-users {
     width: 200px;
     padding: 20px;
-    background-color: #BBDEFB;
+    background-color: #004080;
     overflow-y: auto;
 }
 
 #active-users h2 {
     margin-top: 0;
     padding-bottom: 10px;
-    border-bottom: 2px solid #2196F3;
-    color: #1565C0;
+    border-bottom: 2px solid #00A86B;
+    color: #FFD700;
     font-weight: 600;
 }
 
 .user-item {
     padding: 8px 0;
-    color: #1565C0;
+    color: #7FFFD4;
     font-weight: 500;
 }
 
 #chat-header {
-    background-color: #2196F3;
-    color: white;
+    background-color: #00A86B;
+    color: #FFD700;
     padding: 15px;
     text-align: center;
     font-size: 1.4em;
     font-weight: 600;
     letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 #messages {
@@ -61,30 +62,35 @@ body, html {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    background-color: #FFFFFF;
+    background-color: #00264D;
 }
 
 #input-container {
     display: flex;
     padding: 15px;
-    border-top: 2px solid #2196F3;
-    background-color: #E3F2FD;
+    border-top: 2px solid #00A86B;
+    background-color: #002E5D;
 }
 
 #message-input {
     flex-grow: 1;
     padding: 12px;
-    border: 2px solid #64B5F6;
+    border: 2px solid #00A86B;
     border-radius: 25px;
     margin-right: 10px;
     font-size: 16px;
-    background-color: white;
+    background-color: #003366;
+    color: #7FFFD4;
+}
+
+#message-input::placeholder {
+    color: #4DB6AC;
 }
 
 #send-button {
     padding: 12px 25px;
-    background-color: #2196F3;
-    color: white;
+    background-color: #00A86B;
+    color: #FFD700;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -93,7 +99,7 @@ body, html {
 }
 
 #send-button:hover {
-    background-color: #1E88E5;
+    background-color: #008F5C;
 }
 
 .message {
@@ -102,26 +108,26 @@ body, html {
     border-radius: 18px;
     max-width: 70%;
     word-wrap: break-word;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .message.self {
     align-self: flex-end;
-    background-color: #2196F3;
-    color: white;
+    background-color: #00A86B;
+    color: #FFD700;
 }
 
 .message.other {
     align-self: flex-start;
-    background-color: #90CAF9;
-    color: #1565C0;
+    background-color: #004080;
+    color: #7FFFD4;
 }
 
 .username {
     font-weight: 600;
     margin-bottom: 6px;
     font-size: 0.9em;
-    color: #1565C0;
+    color: #FFD700;
 }
 
 #username-container {
@@ -130,7 +136,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(33, 150, 243, 0.8);
+    background-color: rgba(0, 31, 63, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,26 +144,32 @@ body, html {
 }
 
 #username-form {
-    background-color: #FFFFFF;
+    background-color: #003366;
     padding: 30px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 #username-input {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 2px solid #64B5F6;
+    border: 2px solid #00A86B;
     border-radius: 25px;
     font-size: 16px;
+    background-color: #002E5D;
+    color: #7FFFD4;
+}
+
+#username-input::placeholder {
+    color: #4DB6AC;
 }
 
 #username-form button {
     padding: 12px 25px;
-    background-color: #2196F3;
-    color: white;
+    background-color: #00A86B;
+    color: #FFD700;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -166,7 +178,7 @@ body, html {
 }
 
 #username-form button:hover {
-    background-color: #1E88E5;
+    background-color: #008F5C;
 }
 
 #video-background {
@@ -179,5 +191,5 @@ body, html {
     height: auto;
     z-index: -1000;
     background-size: cover;
-    opacity: 0.2; /* Adjust this value to make the video more or less visible */
+    opacity: 0.15; /* Adjusted for better visibility of the peacock theme */
 }
