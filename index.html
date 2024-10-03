@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Chat Room</title>
+    <title>Enhanced Chat Room</title>
     <style>
         body, html {
             font-family: Arial, sans-serif;
@@ -12,14 +12,33 @@
             height: 100%;
             background-color: #f0f0f0;
         }
-        #chat-container {
-            max-width: 800px;
-            height: 100%;
-            margin: 0 auto;
+        .app-container {
             display: flex;
-            flex-direction: column;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e0e0e0;
+        }
+        #active-users {
+            width: 200px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+        }
+        #active-users h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .user-item {
+            padding: 5px 0;
         }
         #chat-header {
             background-color: #4CAF50;
@@ -111,12 +130,17 @@
     </style>
 </head>
 <body>
-    <div id="chat-container">
-        <div id="chat-header">Simple Chat Room</div>
-        <div id="messages"></div>
-        <div id="input-container">
-            <input type="text" id="message-input" placeholder="Type a message...">
-            <button id="send-button">Send</button>
+    <div class="app-container">
+        <div id="chat-container">
+            <div id="chat-header">Enhanced Chat Room</div>
+            <div id="messages"></div>
+            <div id="input-container">
+                <input type="text" id="message-input" placeholder="Type a message...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+        <div id="active-users">
+            <h2>Active Users</h2>
         </div>
     </div>
     <div id="username-container">
@@ -134,6 +158,7 @@
         const usernameForm = document.getElementById('username-form');
         const usernameInput = document.getElementById('username-input');
         const chatContainer = document.getElementById('chat-container');
+        const activeUsersContainer = document.getElementById('active-users');
 
         let username = '';
 
@@ -143,7 +168,7 @@
             
             const usernameElement = document.createElement('div');
             usernameElement.classList.add('username');
-            usernameElement.textContent = isSelf ? 'You' : message.username;
+            usernameElement.textContent = message.username;
             
             const textElement = document.createElement('div');
             textElement.textContent = message.text;
@@ -178,6 +203,24 @@
             messages.forEach(message => addMessage(message, message.username === username));
         }
 
+        function updateActiveUsers() {
+            const users = new Set();
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('message_')) {
+                    const message = JSON.parse(localStorage.getItem(key));
+                    users.add(message.username);
+                }
+            }
+            activeUsersContainer.innerHTML = '<h2>Active Users</h2>';
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.classList.add('user-item');
+                userElement.textContent = user;
+                activeUsersContainer.appendChild(userElement);
+            });
+        }
+
         sendButton.addEventListener('click', sendMessage);
         messageInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -190,8 +233,9 @@
             username = usernameInput.value.trim();
             if (username) {
                 usernameContainer.style.display = 'none';
-                chatContainer.style.display = 'flex';
+                document.querySelector('.app-container').style.display = 'flex';
                 loadMessages();
+                updateActiveUsers();
                 messageInput.focus();
             }
         });
@@ -202,11 +246,15 @@
                 if (message.username !== username) {
                     addMessage(message, false);
                 }
+                updateActiveUsers();
             }
         });
 
-        // Initially hide the chat container
-        chatContainer.style.display = 'none';
+        // Initially hide the app container
+        document.querySelector('.app-container').style.display = 'none';
+
+        // Update active users periodically
+        setInterval(updateActiveUsers, 5000);
     </script>
 </body>
 </html>
