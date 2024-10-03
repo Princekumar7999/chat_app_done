@@ -5,8 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enhanced Chat Room</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
+    <video autoplay muted loop id="video-background">
+        <source src="https://www.pexels.com/video/a-cloud-of-blue-green-paint-underwater-7565438/" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="app-container">
         <div id="chat-container">
             <div id="chat-header">Enhanced Chat Room</div>
@@ -29,7 +47,7 @@
     </div>
     <script>
         document.querySelector('.app-container').style.display = 'none';
-       </script>
-        <script src="app.js" defer></script>
+    </script>
+    <script src="app.js" defer></script>
 </body>
 </html>
