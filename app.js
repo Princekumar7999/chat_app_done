@@ -96,9 +96,4 @@ window.addEventListener('storage', (e) => {
         updateActiveUsers();
     }
 });
-
-
-
-
-// Update active users periodically
 setInterval(updateActiveUsers, 5000);

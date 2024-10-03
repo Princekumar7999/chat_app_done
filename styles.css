@@ -191,5 +191,5 @@ body, html {
     height: auto;
     z-index: -1000;
     background-size: cover;
-    opacity: 0.15; /* Adjusted for better visibility of the peacock theme */
+    opacity: 0.15; 
 }
